@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Font styles -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+  <!-- Time Styles-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- thy style sheet -->
+  <link rel="stylesheet" href="assets/style.css" />
+  <title>Work Day Planner</title>
+</head>
+  <body>
+      <div class="container">
+      <!-- header -->
+        <header class="header-box">
+          <h1 class="title">Work Day Planner</h1>
+            <p class="lead"> Lets plan your work day!</p>
+          <p id="currentDay" class="lead"></p>
+        </header>
+        <br></br>
+       <div class="card">
+          <div class="row" id="9am">
+            <p id="time" class="text-body col-1">9 AM </p>
+              <input type="text" id="9" class="col-10" placeholder="Enter Your Tasks">
+            <button id="button9am" class="rowBtn btn-primary col-1">Save</button>
+          </div>
+      </div>
+      <div class="card">
+        <div class="row" id="10am">
+            <p id="time" class="text-body col-1">10 AM </p>
+              <input type="text" id="10" class="col-10" placeholder="Enter Your Tasks">
+            <button id="button10am" class="rowBtn btn-primary col-1">Save</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="row" id="11am">
+            <p id="time" class=" text-body col-1">11 AM</p>
+              <input type="text" id="11" class="col-10" placeholder="Enter Your Tasks">
+            <button id="button11am" class="rowBtn btn-primary col-1">Save</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="row" id="12pm">
+            <p id="time" class="text-body col-1">12 PM</p>
+              <input type="text" id="12" class="col-10" placeholder="Enter Your Tasks">
+            <button id="button12pm" class="rowBtn btn-primary col-1">Save</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="row" id="1pm">
+            <p id="time" class="text-body col-1">1 PM</p>
+              <input type="text" id="13" class="col-10" placeholder="Enter Your Tasks">
+            <button id="button1pm" class="rowBtn btn-primary col-1">Save</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="row" id="2pm">
+            <p id="time" class="text-body col-1">2 PM</p>
+              <input type="text" id="14" class="col-10" placeholder="Enter Your Tasks"> 
+            <button id="button2pm" class="rowBtn btn-primary col-1">Save</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="row" id="3pm">
+            <p id="time" class="text-body col-1">3 PM</p>
+              <input type="text" id="15" class="col-10" placeholder="Enter Your Tasks"> 
+            <button id="button3pm" class="rowBtn btn-primary col-1">Save</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="row" id="4pm">
+            <p id="time" class="text-body col-1">4 PM</p>
+              <input type="text" id="16" class="col-10" placeholder="Enter Your Tasks"> 
+            <button id="button4pm" class="rowBtn btn-primary col-1">Save</button>
+        </div>
+      </div>
+       <div class="card">
+        <div class="row" id="5pm">
+            <p id="time" class="text-body col-1">5 PM</p>
+              <input type="text" id="17" class="col-10" placeholder="Enter Your Tasks"> 
+            <button id="button5pm" class="rowBtn btn-primary col-1">Save</button>
+        </div>
+      </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+      window.omload = function(){
+        colorCode();
+      }
+      //moment.js formating
+      var date = moment().format("dddd, MMMM Do YYYY");
+      $("#currentDay").append(date);
+
+      //background Updater
+      var timeOfday = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
+      updatetime();
+      //changing of back ground colors depending on time
+      function updatetime() {
+        var currentTime = moment().format("H");
+        for (var i = 0; i < timeOfday.length; i++) {
+            if (parseInt(timeOfday[i]) < currentTime) {
+            $("#" + timeOfday[i]).attr("style", "background-color: rgb(218, 218, 218)");
+          } else if (parseInt(timeOfday[i]) == currentTime) {
+            $("#" + timeOfday[i]).attr("style", "background-color: rgb (230, 230, 250)");
+          }
+           else (parseInt(timeOfday[i]) == currentTime) 
+            $("#" + timeOfday[i]).attr("style", "background-color: rgb(62, 62, 199)");
+           
+        }
+      }
+
+      //saves input to local storage
+      $(".rowBtn").on("click", function () {
+        var timeOfday = $(this).parent().attr("id");
+        var textContent = $("input").val().trim();
+
+        localStorage.setItem(timeOfday, textContent);
+        console.log(timeOfday, textContent);
+      });
+
+      //Getting individual childern and setting to parent
+      $("#9am").children("input").val(localStorage.getItem("9am"));
+
+      $("#10am").children("input").val(localStorage.getItem("10am"));
+
+      $("#11am").children("input").val(localStorage.getItem("11am"));
+
+      $("#12pm").children("input").val(localStorage.getItem("12pm"));
+
+      $("#1pm").children("input").val(localStorage.getItem("1pm"));
+
+      $("#2pm").children("input").val(localStorage.getItem("2pm"));
+
+      $("#3pm").children("input").val(localStorage.getItem("3pm"));
+
+      $("#4pm").children("input").val(localStorage.getItem("4pm"));
+
+      $("#5pm").children("input").val(localStorage.getItem("5pm"));
+
+    //trying to make background changer work using something different
+    var now = new Date().getHours();
+
+function colorCode() {
+  if (now > 9) {
+    $("#9am").addClass("past");
+  } else if (now >= 9 && now < 10) {
+    $("#9am").addClass("present");
+  } else if (now < 9) {
+    $("#9am").addClass("future");
+  }
+  if (now > 10) {
+    $("#10am").addClass("past");
+  } else if (now >= 10 && now < 11) {
+    $("#10am").addClass("present");
+  } else if (now < 10) {
+    $("#10am").addClass("future");
+  }
+  if (now > 11) {
+    $("#11am").addClass("past");
+  } else if (now >= 11 && now < 12) {
+    $("#11am").addClass("present");
+  } else if (now < 11) {
+    $("#11am").addClass("future");
+  }
+  if (now > 12) {
+    $("#12pm").addClass("past");
+  } else if (now >= 12 && now < 13) {
+    $("#12pm").addClass("present");
+  } else if (now < 12) {
+    $("#12pm").addClass("future");
+  }
+  if (now > 13) {
+    $("#1pm").addClass("past");
+  } else if (now >= 13 && now < 14) {
+    $("#1pm").addClass("present");
+  } else if (now < 13) {
+    $("#1pm").addClass("future");
+  }
+  if (now > 14) {
+    $("#2pm").addClass("past");
+  } else if (now >= 14 && now < 15) {
+    $("#2pm").addClass("present");
+  } else if (now < 14) {
+    $("#2pm").addClass("future");
+  }
+  if (now > 15) {
+    $("#3pm").addClass("past");
+  } else if (now >= 15 && now < 16) {
+    $("#3pm").addClass("present");
+  } else if (now < 15) {
+    $("#3pm").addClass("future");
+  }
+  if (now > 16) {
+    $("#4pm").addClass("past");
+  } else if (now >= 16 && now < 17) {
+    $("#4pm").addClass("present");
+  } else if (now < 16) {
+    $("#4pm").addClass("future");
+  }
+  if (now > 17) {
+    $("#5pm").addClass("past");
+  } else if (now >= 17 && now < 18) {
+    $("#5pm").addClass("present");
+  } else if (now < 17) {
+    $("#5pm").addClass("future");
+  }
+}
+
+//Saving the data tht is typed in the text area for each box
+function nineAM() {
+  var input_textarea = document.querySelector("#9am");
+  var output_div = document.querySelector("#9am");
+  var save_button = document.querySelector("#button9am");
+
+  save_button.addEventListener("click", updateOutput);
+
+  output_div.textContent = localStorage.getItem("content");
+  input_textarea.value = localStorage.getItem("content");
+
+  function updateOutput() {
+    localStorage.setItem("content", input_textarea.value);
+
+    output_div.textContent = input_textarea.value;
+  }
+}
+
+
+
+function tenAM() {
+  var input_textarea2 = document.querySelector("#10am");
+  var output_div2 = document.querySelector("#10am");
+  var save_button2 = document.querySelector("#button10am");
+
+  save_button2.addEventListener("click", updateOutput2);
+
+  output_div2.textContent = localStorage.getItem("content2");
+  input_textarea2.value = localStorage.getItem("content2");
+
+  function updateOutput2() {
+    localStorage.setItem("content2", input_textarea2.value);
+
+    output_div2.textContent = input_textarea2.value;
+  }
+}
+
+
+function elevenAM() {
+  var input_textarea3 = document.querySelector("#11am");
+  var output_div3 = document.querySelector("#11am");
+  var save_button3 = document.querySelector("#button11am");
+
+  save_button3.addEventListener("click", updateOutput3);
+
+  output_div3.textContent = localStorage.getItem("content3");
+  input_textarea3.value = localStorage.getItem("content3");
+
+  function updateOutput3() {
+    localStorage.setItem("content3", input_textarea3.value);
+
+    output_div3.textContent = input_textarea3.value;
+  }
+}
+
+
+function twelvePM() {
+  var input_textarea4 = document.querySelector("#12pm");
+  var output_div4 = document.querySelector("#12pm");
+  var save_button4 = document.querySelector("#button12pm");
+
+  save_button4.addEventListener("click", updateOutput4);
+
+  output_div4.textContent = localStorage.getItem("content4");
+  input_textarea4.value = localStorage.getItem("content4");
+
+  function updateOutput4() {
+    localStorage.setItem("content4", input_textarea4.value);
+
+    output_div4.textContent = input_textarea4.value;
+  }
+}
+
+
+function onePM() {
+  var input_textarea5 = document.querySelector("#1pm");
+  var output_div5 = document.querySelector("#1pm");
+  var save_button5 = document.querySelector("#button1pm");
+
+  save_button5.addEventListener("click", updateOutput5);
+
+  output_div5.textContent = localStorage.getItem("content5");
+  input_textarea5.value = localStorage.getItem("content5");
+
+  function updateOutput5() {
+    localStorage.setItem("content5", input_textarea5.value);
+
+    output_div5.textContent = input_textarea5.value;
+  }
+}
+
+
+function twoPM() {
+  var input_textarea6 = document.querySelector("#2pm");
+  var output_div6 = document.querySelector("#2pm");
+  var save_button6 = document.querySelector("#button2pm");
+
+  save_button6.addEventListener("click", updateOutput6);
+
+  output_div6.textContent = localStorage.getItem("content6");
+  input_textarea6.value = localStorage.getItem("content6");
+
+  function updateOutput6() {
+    localStorage.setItem("content6", input_textarea6.value);
+
+    output_div6.textContent = input_textarea6.value;
+  }
+}
+
+
+function threePM() {
+  var input_textarea7 = document.querySelector("#3pm");
+  var output_div7 = document.querySelector("#3pm");
+  var save_button7 = document.querySelector("#button3pm");
+
+  save_button7.addEventListener("click", updateOutput7);
+
+  output_div7.textContent = localStorage.getItem("content7");
+  input_textarea7.value = localStorage.getItem("content7");
+
+  function updateOutput7() {
+    localStorage.setItem("content7", input_textarea7.value);
+
+    output_div7.textContent = input_textarea7.value;
+  }
+}
+
+
+function fourPM() {
+  var input_textarea8 = document.querySelector("#4pm");
+  var output_div8 = document.querySelector("#4pm");
+  var save_button8 = document.querySelector("#button4pm");
+
+  save_button8.addEventListener("click", updateOutput8);
+
+  output_div8.textContent = localStorage.getItem("content8");
+  input_textarea8.value = localStorage.getItem("content8");
+
+  function updateOutput8() {
+    localStorage.setItem("content8", input_textarea8.value);
+
+    output_div8.textContent = input_textarea8.value;
+  }
+}
+
+
+function fivePM() {
+  var input_textarea9 = document.querySelector("#5pm");
+  var output_div9 = document.querySelector("#5pm");
+  var save_button9 = document.querySelector("#button5pm");
+
+  save_button9.addEventListener("click", updateOutput9);
+
+  output_div9.textContent = localStorage.getItem("content9");
+  input_textarea9.value = localStorage.getItem("content9");
+
+  function updateOutput9() {
+    localStorage.setItem("content9", input_textarea9.value);
+
+    output_div9.textContent = input_textarea9.value;
+  }
+}
+    </script>
+  </body>
+  <br></br>
+  <!--Motivational-->
+  <footer>
+    <p id="goals">Lets Get the Best of Today and Achieve Our Goals! If the Plan Doesn't Work, Change the Plan, but Never the Goal!</p>
+  </footer>
+  <br></br>
+</html>

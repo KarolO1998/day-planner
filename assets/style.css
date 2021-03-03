@@ -1,0 +1,88 @@
+body {
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+  line-height: 1;
+}
+.header-box {
+  text-align: center;
+  background-color: transparent;
+  color: black;
+  border-radius: 0;
+  border-bottom: 10px solid black;
+}
+
+.title {
+  font-size: 46px;
+  text-decoration: underline;
+}
+
+.col-10 {
+  background: transparent;
+  border: none;
+  resize: none;
+  color: #000000;
+  border-left: 2px solid rgb(155, 151, 151);
+  border-top: 2px solid rgb(155, 151, 151);
+  border-bottom: 1px solid rgb(155, 151, 151);
+  padding: 10px;
+  white-space: pre-wrap;
+}
+
+.row {
+  white-space: pre-wrap;
+  height: 80px;
+}
+
+#time {
+  padding: 23px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.hour {
+  font-size: 20px;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.rowBtn {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #000000;
+  border-top-color: rgb(0, 0, 0);
+  border-right-color: rgb(0, 0, 0);
+  border-left-color: rgb(0, 0, 0);
+  border-bottom-color: rgb(0, 0, 0);
+  color: white;
+}
+.rowBtn:hover {
+  background-color: rgb(116, 116, 116);
+  border-top-color: rgb(116, 116, 116);
+  border-right-color: rgb(166, 166, 166);
+  border-left-color: rgb(116, 116, 116);
+  border-bottom-color: rgb(116, 116, 116);
+}
+
+#goals {
+  padding-top: 20px;
+  text-align: center;
+  font-size: 18px;
+  text-decoration: underline;
+  height: 65px;
+  background-color: rgb(155, 151, 151);
+}
+
+.past {
+  background-color: rgb(131, 131, 131);
+  color: rgb(0, 0, 0);
+}
+
+.present {
+  background-color: rgb(147, 61, 197);
+  color: rgb(0, 0, 0);
+}
+
+.future {
+  background-color: rgb(62, 62, 199);
+  color: rgb(0, 0, 0);
+}
